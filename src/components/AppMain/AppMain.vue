@@ -1,12 +1,34 @@
 <template>
     <main>
-        <h1>main</h1>
+        <section class="container">
+            <h1>Projects' List</h1>
+            <div v-for="project in projects">
+                <ProjectInfo :projectData = "project" />
+            </div>
+        </section>
     </main>
 </template>
 
 <script>
+import ProjectInfo from './ProjectInfo.vue';
+import axios from 'axios';
+
 export default {
-    name : 'AppMain'
+    name : 'AppMain',
+    components: {
+        ProjectInfo
+    },
+    data() {
+        return {
+            projects: [],
+        }
+    },
+    created() {
+        axios.get('http://127.0.0.1:8000/api/projects')
+        .then( (res) => {
+            this.projects = res.data;
+        } )
+    }
 }
 </script>
 
