@@ -1,7 +1,6 @@
 <template>
     <main>
         <section class="container pt-3 pb-5">
-            <h1>Projects' List</h1>
             <div class="cards-container row">
                 <div v-for="project in projects" class="col-6 gy-4">
                     <ProjectInfo :projectData = "project" />

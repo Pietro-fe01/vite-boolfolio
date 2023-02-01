@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1>Header</h1>
+        <h1>Projects' List</h1>
     </header>
 </template>
 

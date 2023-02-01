@@ -2,12 +2,15 @@
     <div class="card">
         <img v-if="projectData.image_url" :src="projectData.image_url" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{ projectData.project_title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ projectData.customer_name }}</h6>
-            <h6 class="mb-1 p-2 bg-dark text-white">{{ projectData.type.name }}</h6>
+            <h5 class="card-title">Title: {{ projectData.project_title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Customer: {{ projectData.customer_name }}</h6>
+            <h6 class="project-type">{{ projectData.type.name }}</h6>
             <p class="card-text">
                 {{ cropDescription(projectData.description) }}
             </p>
+            <div class="project-technologies">
+                <span v-for="technology in projectData.technologies" class="badge text-bg-dark me-2 mb-3 p-2">{{ technology.name }}</span>
+            </div>
             <a href="#" class="btn btn-primary">See details</a>
         </div>
     </div>
@@ -43,6 +46,18 @@ export default {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             object-fit: cover;
+        }
+        & .card-body {
+            & .project-type {
+                background-color: rgba($color: #000000, $alpha: 0.5);
+                border-radius: 10px;
+                display: inline-block;
+                color: white;
+                padding: 7px 15px;
+                position: absolute;
+                top: 16px;
+                right: 16px;
+            }
         }
     }
 </style>
