@@ -1,9 +1,11 @@
 <template>
     <main>
-        <section class="container">
+        <section class="container pt-3 pb-5">
             <h1>Projects' List</h1>
-            <div v-for="project in projects">
-                <ProjectInfo :projectData = "project" />
+            <div class="cards-container row">
+                <div v-for="project in projects" class="col-6 gy-4">
+                    <ProjectInfo :projectData = "project" />
+                </div>
             </div>
         </section>
     </main>
@@ -34,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
     main {
-        height: calc( 100vh - 120px );
+        height: calc( 100% - 120px );
         background-color: lightgray;
     }
 </style>
