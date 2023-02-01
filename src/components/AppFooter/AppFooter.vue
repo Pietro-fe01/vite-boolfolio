@@ -1,17 +1,17 @@
 <template>
-    <header>
-        <h1>Header</h1>
-    </header>
+    <footer>
+        <small>Made with love by class 76</small>
+    </footer>
 </template>
 
 <script>
 export default {
-    name: 'AppHeader'
+    name: 'AppFooter'
 }
 </script>
 
 <style lang="scss" scoped>
-    header {
+    footer {
         background-color: black;
         text-align: center;
         height: 60px;
