@@ -17,5 +17,10 @@ export default {
         height: 60px;
         line-height: 60px;
         color: white;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
     }
 </style>
