@@ -13,7 +13,8 @@ export default {
 
 <style lang="scss" scoped>
     main {
-        height: calc( 100% - 120px );
+        min-height: calc(100vh - 120px);
+        max-height: calc( 100% - 120px );
         background-color: lightgray;
     }
 </style>
