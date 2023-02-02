@@ -32,5 +32,8 @@ export default {
         left: 0;
         right: 0;
         z-index: 20;
+        & * {
+            height: 100%;
+        }
     }
 </style>
