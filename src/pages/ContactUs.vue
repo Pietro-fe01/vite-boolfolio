@@ -1,12 +1,13 @@
 <template>
-    <section class="about-us container">
-        <h1 class="m-0">About us</h1>
+    <section class="contact-us container">
+        <h1 class="m-0">Contattaci</h1>
     </section>
 </template>
 
 <script>
+
 export default {
-    name: 'AboutUs'
+    name : 'ContactUs',
 }
 </script>
 

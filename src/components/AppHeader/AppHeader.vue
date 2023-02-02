@@ -1,6 +1,16 @@
 <template>
     <header>
-        <h1>Boolfolio Projects</h1>
+        <div class="container d-flex justify-content-between">
+            <h1>Boolfolio Projects</h1>
+    
+            <nav>
+                <ul class="d-flex list-unstyled">
+                    <li class="ms-4"><router-link :to="{ name: 'homepage' }">Homepage</router-link></li>
+                    <li class="ms-4"><router-link :to="{ name: 'about-us' }">About Us</router-link></li>
+                    <li class="ms-4"><router-link :to="{ name: 'contact-us' }">Contact Us</router-link></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 </template>
 
