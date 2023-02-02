@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1>Projects' List</h1>
+        <h1>Boolfolio Projects</h1>
     </header>
 </template>
 
