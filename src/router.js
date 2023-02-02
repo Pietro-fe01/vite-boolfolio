@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from './pages/HomePage.vue';
 import AboutUs from './pages/AboutUs.vue';
 import ContactUs from './pages/ContactUs.vue';
+import Error404 from './pages/Error404.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,11 @@ const router = createRouter({
             path: '/contact-us',
             name: 'contact-us',
             component: ContactUs
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'page-not-found',
+            component: Error404
         }
     ]
 });
