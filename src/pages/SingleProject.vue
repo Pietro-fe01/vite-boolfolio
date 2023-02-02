@@ -1,5 +1,5 @@
 <template>
-    <section class="single-project">
+    <section class="single-project container">
         <h1 class="m-0">{{ project }}</h1>
     </section>
 </template>
