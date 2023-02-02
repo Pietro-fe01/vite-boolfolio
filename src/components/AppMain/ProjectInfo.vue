@@ -11,7 +11,9 @@
             <div class="project-technologies">
                 <span v-for="technology in projectData.technologies" class="badge text-bg-dark me-2 mb-3 p-2">{{ technology.name }}</span>
             </div>
-            <a :href="`http://127.0.0.1:8000/api/project/${projectData.slug}`" class="btn btn-primary">See details</a>
+            <router-link class="btn btn-primary" :to="{ name: 'single-project', params: { slug: projectData.slug } }">
+                See details
+            </router-link>
         </div>
     </div>
 </template>
