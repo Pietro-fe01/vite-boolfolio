@@ -1,8 +1,8 @@
 <template>
     <header>
-        <div class="container d-flex justify-content-between">
+        <div class="container d-flex justify-content-between align-items-center">
             <h1 class="m-0">Boolfolio Projects</h1>
-    
+
             <nav>
                 <ul class="d-flex list-unstyled">
                     <li class="ms-4"><router-link :to="{ name: 'homepage' }" class="text-white text-decoration-none">Homepage</router-link></li>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
 }
 </script>
 
