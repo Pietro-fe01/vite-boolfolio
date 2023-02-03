@@ -1,15 +1,16 @@
 <template>
     <section class="container pt-3 pb-5 homepage">
-        <select v-model="type" name="types[]" id="" class="form-select" @change="getTypeProjects()" >
+        <select v-model="type" name="type" id="" class="form-select" @change="getTypeProjects()" >
             <option value="default" selected>All types</option>
             <option v-for="_type in typeSelection" :value="_type.id">{{ _type.name }}</option>
         </select>
 
-        <div class="cards-container row">
+        <div v-if="this.projects" class="cards-container row">
             <div v-for="project in projects" class="col-6 gy-4">
                 <ProjectInfo :projectData = "project" />
             </div>
         </div>
+        <div v-else>Nessun risultato</div>
     </section>
 </template>
 
@@ -26,7 +27,7 @@ export default {
         return {
             projects: [],
             typeSelection: null,
-            type: 'default'
+            type: 'default',
         }
     },
     methods: {
@@ -42,7 +43,7 @@ export default {
                     this.projects = res.data;
                 });
             }
-        }  
+        }
     },
     created() {
         // Get all projects
