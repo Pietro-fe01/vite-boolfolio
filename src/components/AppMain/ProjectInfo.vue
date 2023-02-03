@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <img v-if="projectData.image_url" :src="projectData.image_url" class="card-img-top" alt="...">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column align-items-start">
             <h5 class="card-title">Title: {{ projectData.project_title }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Customer: {{ projectData.customer_name }}</h6>
             <h6 class="project-type">{{ projectData.type.name }}</h6>
@@ -11,7 +11,7 @@
             <div class="project-technologies">
                 <span v-for="technology in projectData.technologies" class="badge text-bg-dark me-2 mb-3 p-2">{{ technology.name }}</span>
             </div>
-            <router-link class="btn btn-primary" :to="{ name: 'single-project', params: { slug: projectData.slug } }">
+            <router-link class="btn btn-primary mt-auto" :to="{ name: 'single-project', params: { slug: projectData.slug } }">
                 See details
             </router-link>
         </div>
@@ -42,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
     .card {
+        height: 100%;
         & img {
             height: 250px;
             padding: 5px 5px 0 5px;
