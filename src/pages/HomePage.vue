@@ -4,13 +4,13 @@
             <option value="default" selected>All types</option>
             <option v-for="_type in typeSelection" :value="_type.id">{{ _type.name }}</option>
         </select>
-
-        <div v-if="this.projects" class="cards-container row">
+    
+        <div v-if="projects.length > 0" class="cards-container row">
             <div v-for="project in projects" class="col-6 gy-4">
                 <ProjectInfo :projectData = "project" />
             </div>
         </div>
-        <div v-else>Nessun risultato</div>
+        <h4 v-else class="no-projects-found text-center">Nessun progetto di tipo '{{ typeSelection[type - 1].name }}' trovato.</h4>
     </section>
 </template>
 
@@ -66,6 +66,15 @@ export default {
         & select {
             border-radius: 10px;
             text-align: center;
+        }
+        & .no-projects-found {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2.5px solid black;
+            padding: 5px 15px;
+            border-radius: 10px;
         }
     }
 </style>
