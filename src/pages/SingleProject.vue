@@ -55,8 +55,8 @@ export default {
         return {
             project: null,
             review: '',
-            userName: 'as',
-            textReview: 'as'
+            userName: '',
+            textReview: ''
         }
     },
     methods: {
@@ -67,6 +67,7 @@ export default {
             })
             .then( (res) => {
                 this.review = res;
+                console.log(res)
             })
         }
     },
