@@ -11,6 +11,24 @@
             <span v-for="technology in project.technologies" class="badge text-bg-dark me-2 p-2">{{ technology.name }}</span>
         </div>
 
+        <div class="reviews-container" v-if="project.reviews.length > 0">
+            <h2>Reviews:</h2>
+            <div class="reviews-section d-flex flex-wrap">
+                <div class="card text-center mb-4" v-for="review in project.reviews">
+                    <div class="card-header">
+                        Reviewed by <span class="text-decoration-underline">{{ review.user_name}}</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ review.text_review }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 v-else class="mb-3">No reviews have been provided. Let us know your thoughts!</h4>
+
         <router-link :to="{ name: 'homepage' }" class="btn btn-secondary">Come back</router-link>
     </section>
 </template>
@@ -39,4 +57,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .single-project {
+        & .reviews-container {
+            & .reviews-section .card {
+                width: calc(100% / 2 - 12px);
+                &:nth-child(odd) {
+                    margin-right: 12px;
+                }
+                &:nth-child(even) {
+                    margin-left: 12px;
+                }
+            }
+        }  
+    }
+</style>
