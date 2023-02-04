@@ -5,7 +5,7 @@
 
             <nav>
                 <ul class="d-flex list-unstyled">
-                    <li class="ms-4"><router-link :to="{ name: 'homepage' }" class="text-white text-decoration-none">Homepage</router-link></li>
+                    <li class="ms-4"><router-link :to="{ name: 'homepage' }" class="text-white text-decoration-none hover">Homepage</router-link></li>
                     <li class="ms-4"><router-link :to="{ name: 'about-us' }" class="text-white text-decoration-none">About Us</router-link></li>
                     <li class="ms-4"><router-link :to="{ name: 'contact-us' }" class="text-white text-decoration-none">Contact Us</router-link></li>
                 </ul>

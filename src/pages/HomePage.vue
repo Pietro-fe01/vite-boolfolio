@@ -10,7 +10,7 @@
                 <ProjectInfo :projectData = "project" />
             </div>
         </div>
-        <h4 v-else class="no-projects-found text-center">Nessun progetto di tipo '{{ typeSelection[type - 1].name }}' trovato.</h4>
+        <h4 v-else class="no-projects-found text-center">Nessun progetto di tipo '{{ getTypeName() }}' trovato.</h4>
     </section>
 </template>
 
@@ -42,6 +42,11 @@ export default {
                 .then( (res) => {
                     this.projects = res.data;
                 });
+            }
+        },
+        getTypeName() {
+            if(!isNaN(this.type)){
+                return this.typeSelection[this.type - 1].name;
             }
         }
     },
