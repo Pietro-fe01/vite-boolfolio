@@ -11,6 +11,17 @@
             <span v-for="technology in project.technologies" class="badge text-bg-dark me-2 p-2">{{ technology.name }}</span>
         </div>
 
+        <div>{{ review }}</div>
+        <form action="" @submit.prevent>
+            <label for="user_name" class="form-label">Your name</label>
+            <input type="text" placeholder="Your name" class="form-control" id="user_name" v-model="userName">
+
+            <label for="text_review" class="form-label">Text review</label>
+            <textarea name="" cols="30" rows="5" placeholder="Text review" class="form-control" id="text_review" v-model="textReview"></textarea>
+
+            <button type="submit" class="btn btn-primary" @click="sendReviewForm()">Send</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
         <div class="reviews-container" v-if="project.reviews.length > 0">
             <h2>Reviews:</h2>
             <div class="reviews-section d-flex flex-wrap">
@@ -27,7 +38,9 @@
                 </div>
             </div>
         </div>
-        <h4 v-else class="mb-3">No reviews have been provided. Let us know your thoughts!</h4>
+        <div v-else>
+            <h4 class="mb-3">No reviews have been provided. Let us know your thoughts!</h4>
+        </div>
 
         <router-link :to="{ name: 'homepage' }" class="btn btn-secondary">Come back</router-link>
     </section>
@@ -40,7 +53,21 @@ export default {
     name: 'SingleProject',
     data() {
         return {
-            project: null
+            project: null,
+            review: '',
+            userName: 'as',
+            textReview: 'as'
+        }
+    },
+    methods: {
+        sendReviewForm() {
+            axios.post(`http://127.0.0.1:8000/api/reviews/${this.project.id}`, 
+            {
+                params: { user_name: this.userName, text_review: this.textReview }
+            })
+            .then( (res) => {
+                this.review = res;
+            })
         }
     },
     created() {
