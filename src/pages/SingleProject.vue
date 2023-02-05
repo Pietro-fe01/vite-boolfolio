@@ -25,7 +25,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary me-2" @click="sendReviewForm()">Send</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="reset" class="btn btn-secondary" @click="resetValuesForm()">Reset</button>
             </form>
         </div>
 
@@ -34,7 +34,7 @@
             <div class="reviews-section d-flex flex-wrap">
                 <div class="card text-center mb-4" v-for="review in project.reviews">
                     <div class="card-header">
-                        Reviewed by <span class="text-decoration-underline">{{ review.user_name}}</span>
+                        Reviewed by <span class="text-decoration-underline">{{ review.user_name === null ? 'Anonymus' : review.user_name }}</span>
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ review.text_review }}</p>
@@ -84,6 +84,12 @@ export default {
                 return window.location.reload();
                 // return this.$router.push({ name: 'single-project' })
             }
+        },
+        resetValuesForm() {
+            return [
+                this.userName = '',
+                this.textReview = ''
+            ];
         }
     },
     created() {
