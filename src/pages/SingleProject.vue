@@ -11,24 +11,6 @@
             <span v-for="technology in project.technologies" class="badge text-bg-dark me-2 p-2">{{ technology.name }}</span>
         </div>
 
-        <div class="mb-4 reviews-form">
-            <h2>Let me know your thoughts!</h2>
-            <form action="" @submit.prevent>
-                <div class="form-floating mb-3">
-                    <input type="text" placeholder="Your name" class="form-control" id="user_name" v-model="userName">
-                    <label for="user_name" class="form-label">Your name</label>
-                </div>
-    
-                <div class="form-floating mb-3">
-                    <textarea name="" cols="30" rows="10" placeholder="Text review" class="form-control" :class="this.formInvalid ? 'is-invalid' : ''" id="text_review" v-model="textReview"></textarea>
-                    <label for="text_review" class="form-label">Text review*</label>
-                </div>
-
-                <button type="submit" class="btn btn-primary me-2" @click="sendReviewForm()">Send</button>
-                <button type="reset" class="btn btn-secondary" @click="resetValuesForm()">Reset</button>
-            </form>
-        </div>
-
         <div class="reviews-container" v-if="project.reviews.length > 0">
             <h2>Reviews:</h2>
             <div class="reviews-section d-flex flex-wrap">
@@ -47,6 +29,27 @@
         </div>
         <div v-else>
             <h4 class="mb-3">No reviews have been released yet.</h4>
+        </div>
+
+        <div class="mb-4 reviews-form">
+            <h2>Let me know your thoughts!</h2>
+            <form action="" @submit.prevent="sendReviewForm()">
+                <div class="form-floating mb-3">
+                    <input type="text" placeholder="Your name" class="form-control" id="user_name" v-model="userName">
+                    <label for="user_name" class="form-label">Your name</label>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <textarea name="" cols="30" rows="10" placeholder="Text review" class="form-control" :class="this.formInvalid ? 'is-invalid' : ''" id="text_review" v-model="textReview"></textarea>
+                    <label for="text_review" class="form-label">Text review*</label>
+                    <div v-if="formInvalid" class="alert alert-danger">
+                        Attention, mandatory field !
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2">Send</button>
+                <button type="reset" class="btn btn-warning" @click="resetValuesForm()">Reset</button>
+            </form>
         </div>
 
         <router-link :to="{ name: 'homepage' }" class="btn btn-secondary">Come back</router-link>
@@ -72,17 +75,14 @@ export default {
                 this.formInvalid = true;
             } else {
                 this.formInvalid = false;
-                axios.get(`http://127.0.0.1:8000/api/reviews/${this.project.id}`, {
-                    params: { 
-                        user_name: this.userName, 
-                        text_review: this.textReview 
-                    }
+                axios.post(`http://127.0.0.1:8000/api/reviews/${this.project.id}`, {
+                    user_name: this.userName, 
+                    text_review: this.textReview 
                 })
                 .then( (res) => {
-                })
-
-                return window.location.reload();
-                // return this.$router.push({ name: 'single-project' })
+                    this.project.reviews.push(res.data);
+                    this.resetValuesForm();
+                })      
             }
         },
         resetValuesForm() {

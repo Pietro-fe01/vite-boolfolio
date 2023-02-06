@@ -30,7 +30,8 @@ const router = createRouter({
             name: 'single-project',
             component: SingleProject
         },
-        {
+        // Any route not matched will be redirect to 404
+        { 
             path: '/:pathMatch(.*)*',
             name: 'page-not-found',
             component: Error404
