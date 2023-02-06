@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { store } from '../store';
 import ProjectInfo from '../components/AppMain/ProjectInfo.vue';
 import axios from 'axios';
 
@@ -25,6 +26,7 @@ export default {
     },
     data() {
         return {
+            store,
             projects: [],
             typeSelection: null,
             type: 'default',
@@ -33,12 +35,12 @@ export default {
     methods: {
         getTypeProjects() {
             if ( this.type === 'default' ) {
-                axios.get('http://127.0.0.1:8000/api/projects')
+                axios.get(`${this.store.backendUrl}/projects`)
                 .then( (res) => {
                     this.projects = res.data;
                 });
             } else {
-                axios.get(`http://127.0.0.1:8000/api/projects/${this.type}`)
+                axios.get(`${this.store.backendUrl}/projects/${this.type}`)
                 .then( (res) => {
                     this.projects = res.data;
                 });
@@ -52,13 +54,13 @@ export default {
     },
     created() {
         // Get all projects
-        axios.get('http://127.0.0.1:8000/api/projects')
+        axios.get(`${this.store.backendUrl}/projects`)
         .then( (res) => {
             this.projects = res.data;
         });
 
         // Get all project types
-        axios.get('http://127.0.0.1:8000/api/types')
+        axios.get(`${this.store.backendUrl}/types`)
         .then( (res) => {
             this.typeSelection = res.data;
         });

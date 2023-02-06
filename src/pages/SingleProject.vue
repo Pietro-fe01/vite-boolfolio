@@ -57,12 +57,14 @@
 </template>
 
 <script>
+import { store } from '../store';
 import axios from 'axios';
 
 export default {
     name: 'SingleProject',
     data() {
         return {
+            store,
             project: null,
             userName: '',
             textReview: '',
@@ -75,7 +77,7 @@ export default {
                 this.formInvalid = true;
             } else {
                 this.formInvalid = false;
-                axios.post(`http://127.0.0.1:8000/api/reviews/${this.project.id}`, {
+                axios.post(`${this.store.backendUrl}/reviews/${this.project.id}`, {
                     user_name: this.userName, 
                     text_review: this.textReview 
                 })
@@ -93,7 +95,7 @@ export default {
         }
     },
     created() {
-        axios.get(`http://127.0.0.1:8000/api/project/${this.$route.params.slug}`)
+        axios.get(`${this.store.backendUrl}/project/${this.$route.params.slug}`)
         .then( (res) => {
             this.project = res.data;
         })
