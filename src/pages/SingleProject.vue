@@ -47,7 +47,20 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary me-2">Send</button>
+                <div v-if="this.waiting">
+                    <h4 class="mb-3">Processing...</h4>
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2" :disabled="this.waiting">
+                    <div v-if="waiting">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </div>
+                    <div v-else>
+                        SEND
+                    </div>
+                </button>
+
                 <button type="reset" class="btn btn-warning" @click="resetValuesForm()">Reset</button>
             </form>
         </div>
@@ -68,6 +81,8 @@ export default {
             userName: '',
             textReview: '',
             formInvalid: false,
+            waiting: false,
+            reviewSuccess: true,
         }
     },
     methods: {
@@ -75,14 +90,22 @@ export default {
             if (this.textReview == '' ) {
                 this.formInvalid = true;
             } else {
-                this.formInvalid = false;
+                this.formInvalid = false; // To display form errors
+
+                this.waiting = true; // To display a loader before axios' answer
+
+
                 axios.post(`${this.store.backendUrl}/reviews/${this.project.id}`, {
                     user_name: this.userName, 
                     text_review: this.textReview 
                 })
                 .then( (res) => {
                     this.project.reviews.push(res.data);
-                    this.resetValuesForm();
+                    this.resetValuesForm(); // Clear input fields
+
+                    this.waiting = false; // Clear loader after axios' answer
+
+                    this.reviewSuccess = true;
                 })      
             }
         },
