@@ -47,10 +47,6 @@
                     </div>
                 </div>
 
-                <div v-if="this.waiting">
-                    <h4 class="mb-3">Processing...</h4>
-                </div>
-
                 <button type="submit" class="btn btn-primary me-2" :disabled="this.waiting">
                     <div v-if="waiting">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
