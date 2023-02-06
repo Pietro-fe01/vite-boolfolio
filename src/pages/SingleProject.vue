@@ -28,7 +28,7 @@
             </div>
         </div>
         <div v-else>
-            <h4 class="mb-3">No reviews have been released yet.</h4>
+            <h4 class="my-5">No reviews have been released yet.</h4>
         </div>
 
         <div class="mb-4 reviews-form">
