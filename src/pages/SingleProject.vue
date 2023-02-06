@@ -51,7 +51,6 @@
                 <button type="reset" class="btn btn-warning" @click="resetValuesForm()">Reset</button>
             </form>
         </div>
-
         <router-link :to="{ name: 'homepage' }" class="btn btn-secondary">Come back</router-link>
     </section>
 </template>
@@ -68,7 +67,7 @@ export default {
             project: null,
             userName: '',
             textReview: '',
-            formInvalid: false
+            formInvalid: false,
         }
     },
     methods: {
