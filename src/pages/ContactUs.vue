@@ -66,7 +66,27 @@ export default {
     },
     methods: {
         validation() {
-            return this.sendEmail();
+            if(this.formValues.name == '') {
+                this.formInvalid.name = true;
+            } else {
+                this.formInvalid.name = false;
+            }
+
+            if(this.formValues.email == '') {
+                this.formInvalid.email = true;
+            } else {
+                this.formInvalid.email = false;
+            }
+
+            if(this.formValues.message == '') {
+                this.formInvalid.message = true;
+            } else {
+                this.formInvalid.message = false;
+            }
+
+            if(this.formValues.name && this.formValues.email && this.formValues.message) {
+                return this.sendEmail();
+            }
         },
         sendEmail() {
             this.waiting = true;
@@ -76,6 +96,7 @@ export default {
                 message: this.formValues.message
             }).then( (res) => {
                 this.waiting = false;
+                this.resetValuesForm();
             })
         },
         resetValuesForm() {
