@@ -78,7 +78,6 @@ export default {
             textReview: '',
             formInvalid: false,
             waiting: false,
-            reviewSuccess: true,
         }
     },
     methods: {
@@ -99,8 +98,6 @@ export default {
                     this.resetValuesForm(); // Clear input fields
 
                     this.waiting = false; // Clear loader after axios' answer
-
-                    this.reviewSuccess = true;
                 })      
             }
         },
