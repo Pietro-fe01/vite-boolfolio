@@ -1,8 +1,9 @@
 <template>
     <section class="contact-us container">
-        <h1 class="mb-3">Contattaci</h1>
+        <h1 class="pt-3 mb-3 text-center">Contact Us!</h1>
 
-        <form action="" @submit.prevent="validation()">
+        <div class="w-50 m-auto">
+            <form action="" @submit.prevent="validation()">
                 <div class="form-floating mb-3">
                     <input type="text" placeholder="Name" class="form-control" :class="formInvalid.name ? 'is-invalid' : ''" id="name" v-model="formValues.name">
                     <label for="name" class="form-label">Your name*</label>
@@ -39,6 +40,7 @@
 
                 <button type="reset" class="btn btn-warning" @click="resetValuesForm()">Reset</button>
             </form>
+        </div>
     </section>
 </template>
 
