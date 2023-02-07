@@ -43,7 +43,7 @@ export default {
                 axios.get(`${this.store.backendUrl}/projects/${this.type}`)
                 .then( (res) => {
                     this.projects = res.data;
-                });
+                })
             }
         },
         getTypeName() {

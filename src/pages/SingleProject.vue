@@ -90,7 +90,6 @@ export default {
 
                 this.waiting = true; // To display a loader before axios' answer
 
-
                 axios.post(`${this.store.backendUrl}/reviews/${this.project.id}`, {
                     user_name: this.userName, 
                     text_review: this.textReview 

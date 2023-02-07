@@ -36,7 +36,11 @@ const router = createRouter({
             name: 'page-not-found',
             component: Error404
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 }
+    },
 });
 
 export {  router };
