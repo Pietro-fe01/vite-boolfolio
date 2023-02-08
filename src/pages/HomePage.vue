@@ -6,9 +6,16 @@
         </select>
     
         <div v-if="projects.length > 0" class="cards-container row">
-            <div v-for="project in projects" class="col-6 gy-4">
+            <div v-for="project in getProjects" class="col-6 gy-4">
                 <ProjectInfo :projectData = "project" />
             </div>
+
+            <!-- <button id="btn-load" class="btn btn-dark mt-4 mx-auto" @click="totProjects += 4" v-if="totProjects < projects.length">LOAD MORE</button> -->
+            
+            <button id="btn-load" class="btn btn-dark mx-auto mt-4" type="button" @click="totProjects += 4" v-if="totProjects < projects.length">
+                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                <span id="spinner-text">LOAD MORE</span>
+            </button>
         </div>
         <h4 v-else class="no-projects-found text-center">Nessun progetto di tipo '{{ getTypeName() }}' trovato.</h4>
     </section>
@@ -30,6 +37,7 @@ export default {
             projects: [],
             typeSelection: null,
             type: 'default',
+            totProjects: 4,
         }
     },
     methods: {
@@ -51,6 +59,11 @@ export default {
                 return this.typeSelection[this.type - 1].name;
             }
         }
+    },
+    computed: {
+        getProjects() {
+            return this.projects.filter((elm, index) => index < this.totProjects);
+        },
     },
     created() {
         // Get all projects
@@ -82,6 +95,27 @@ export default {
             border: 2.5px solid black;
             padding: 5px 15px;
             border-radius: 10px;
+        }
+        & #btn-load{
+            width: 200px;
+            position: relative;
+            & #spinner-text {
+                transition: margin 0.3s;
+            }
+            &:hover #spinner-text {
+                margin-left: 28px;
+            }
+            &:hover .spinner-border {
+                opacity: 1;
+                left: 23%;
+            }
+            & .spinner-border {
+                transition: all 0.3s;
+                position: absolute;
+                top: 27%;
+                left: 10%;
+                opacity: 0;
+            }
         }
     }
 </style>
