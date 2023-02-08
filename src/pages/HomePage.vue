@@ -1,7 +1,7 @@
 <template>
     <section class="container pt-3 pb-5 homepage">
         <select v-model="type" name="type" id="" class="form-select" @change="getTypeProjects()" >
-            <option value="default" selected>All types</option>
+            <option value="default" selected>All types <span v-once>({{ projects.length }})</span></option>
             <option v-for="_type in typeSelection" :value="_type.id">{{ _type.name }}</option>
         </select>
     
